@@ -43,6 +43,6 @@ app.UseStaticFiles();
 app.UseCors("AllowAll");
 app.UseAuthorization();
 app.MapControllers();
-//app.UseRouting();
+
 
 app.Run();
