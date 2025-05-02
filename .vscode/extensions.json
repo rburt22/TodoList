@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "ms-dotnettools.csharp",
+    "kreativ-software.csharpextensions",
+    "formulahendry.dotnet-test-explorer",
+    "jmrog.vscode-nuget-package-manager",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ritwickdey.liveserver",
+    "cweijan.vscode-mysql-client2"
+  ]
+}

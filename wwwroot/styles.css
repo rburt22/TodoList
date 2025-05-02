@@ -1,0 +1,449 @@
+/**
+ * Todo List Application
+ * Main CSS Styles
+ */
+
+/* ----------------- */
+/* CSS Variables     */
+/* ----------------- */
+:root {
+    /* Colors */
+    --primary-color: #3498db;
+    --primary-dark: #2980b9;
+    --secondary-color: #2ecc71;
+    --secondary-dark: #27ae60;
+    --danger-color: #e74c3c;
+    --danger-dark: #c0392b;
+    --dark-color: #34495e;
+    --light-color: #ecf0f1;
+    --text-color: #333;
+    --text-light: #666;
+    --border-color: #ddd;
+    --bg-color: #f9f9f9;
+    
+    /* Priority Colors */
+    --priority-low: #3498db;
+    --priority-medium: #f39c12;
+    --priority-high: #e74c3c;
+    --priority-urgent: #9b59b6;
+    
+    /* Dimensions */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 10px;
+    
+    /* Spacing */
+    --spacing-xs: 5px;
+    --spacing-sm: 10px;
+    --spacing-md: 15px;
+    --spacing-lg: 20px;
+    --spacing-xl: 30px;
+    
+    /* Shadows */
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --shadow-hover: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    
+    /* Transitions */
+    --transition-speed: 0.3s;
+}
+
+/* ----------------- */
+/* Reset & Base      */
+/* ----------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+}
+
+/* ----------------- */
+/* Header Styles     */
+/* ----------------- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg) 0;
+    margin-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--border-color);
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+/* ----------------- */
+/* Layout            */
+/* ----------------- */
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: var(--spacing-xl);
+}
+
+/* ----------------- */
+/* Sidebar Styles    */
+/* ----------------- */
+.sidebar {
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow);
+}
+
+.categories-list {
+    list-style: none;
+    margin-top: var(--spacing-lg);
+}
+
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-xs);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.category-item:hover {
+    background-color: #f8f8f8;
+}
+
+.category-item.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.category-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: var(--spacing-sm);
+}
+
+.category-name {
+    display: flex;
+    align-items: center;
+}
+
+/* ----------------- */
+/* Button Styles     */
+/* ----------------- */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: var(--danger-dark);
+}
+
+.btn-success {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: var(--secondary-dark);
+}
+
+/* ----------------- */
+/* Form Styles       */
+/* ----------------- */
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* ----------------- */
+/* Modal Styles      */
+/* ----------------- */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: var(--spacing-lg);
+    width: 60%;
+    max-width: 600px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    color: var(--dark-color);
+}
+
+.close-modal {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: var(--danger-color);
+}
+
+.modal-body {
+    margin-bottom: var(--spacing-lg);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+}
+
+/* ----------------- */
+/* Todo Container    */
+/* ----------------- */
+.todos-container {
+    background-color: white;
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow);
+}
+
+.todos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.todos-filters {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* ----------------- */
+/* Todo List Styles  */
+/* ----------------- */
+.todos-list {
+    list-style: none;
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    background-color: var(--bg-color);
+    border-left: 4px solid var(--border-color);
+    transition: transform 0.2s ease;
+}
+
+.todo-item:hover {
+    transform: translateX(5px);
+}
+
+.todo-item.completed {
+    opacity: 0.7;
+    text-decoration: line-through;
+}
+
+.todo-item.priority-high {
+    border-left-color: var(--priority-high);
+}
+
+.todo-item.priority-medium {
+    border-left-color: var(--priority-medium);
+}
+
+.todo-item.priority-low {
+    border-left-color: var(--priority-low);
+}
+
+.todo-item.priority-urgent {
+    border-left-color: var(--priority-urgent);
+    background-color: #fdf2f2;
+}
+
+.todo-content {
+    flex: 1;
+}
+
+.todo-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.todo-details {
+    display: flex;
+    gap: var(--spacing-md);
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* ----------------- */
+/* Todo Actions      */
+/* ----------------- */
+.todo-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.todo-action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-light);
+    transition: color var(--transition-speed) ease;
+}
+
+.todo-action-btn:hover {
+    color: var(--primary-color);
+}
+
+.todo-action-btn.delete:hover {
+    color: var(--danger-color);
+}
+
+.todo-action-btn.complete:hover {
+    color: var(--secondary-color);
+}
+
+.todo-category {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--border-radius-lg);
+    font-size: 0.8rem;
+    color: white;
+}
+
+/* ----------------- */
+/* Empty State       */
+/* ----------------- */
+.empty-state {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--text-light);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-lg);
+    color: var(--border-color);
+}
+
+/* ----------------- */
+/* Color Picker      */
+/* ----------------- */
+.color-picker {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.color-option {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.color-option:hover {
+    transform: scale(1.1);
+}
+
+.color-option.selected {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* ----------------- */
+/* Responsive Design */
+/* ----------------- */
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        width: 90%;
+    }
+    
+    .todos-header {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        align-items: flex-start;
+    }
+    
+    .todos-filters {
+        width: 100%;
+    }
+}

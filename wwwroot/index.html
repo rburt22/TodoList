@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List Application</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Todo List</h1>
+            <button class="btn btn-primary" id="addTodoBtn">
+                <i class="fas fa-plus"></i> Add Todo
+            </button>
+        </header>
+        
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="categories-header">
+                    <h2>Categories</h2>
+                    <button class="btn btn-primary" id="addCategoryBtn" style="margin-top: 10px;">
+                        <i class="fas fa-plus"></i> Add Category
+                    </button>
+                </div>
+                <ul class="categories-list" id="categoriesList">
+                    <li class="category-item active" data-id="all">
+                        <span class="category-name">All</span>
+                        <span class="category-count">0</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="todos-container">
+                <div class="todos-header">
+                    <h2>My Tasks</h2>
+                    <div class="todos-filters">
+                        <select class="form-control" id="priorityFilter">
+                            <option value="all">All Priorities</option>
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent</option>
+                        </select>
+                        <select class="form-control" id="statusFilter">
+                            <option value="all">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <ul class="todos-list" id="todosList">
+                    <!-- Todo items will be added here dynamically -->
+                </ul>
+                
+                <div class="empty-state" id="emptyState">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>No tasks yet</h3>
+                    <p>Create your first task by clicking the "Add Todo" button.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Todo Modal -->
+    <div class="modal" id="todoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="todoModalTitle">Add New Todo</h2>
+                <span class="close-modal" id="closeTodoModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="todoForm">
+                    <input type="hidden" id="todoId">
+                    <div class="form-group">
+                        <label for="todoTitle">Title</label>
+                        <input type="text" class="form-control" id="todoTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="todoDescription">Description (Optional)</label>
+                        <textarea class="form-control" id="todoDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Priority</label>
+                        <div style="display: flex; gap: 10px;">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="radio" name="priority" value="low" checked> Low
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="radio" name="priority" value="medium"> Medium
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="radio" name="priority" value="high"> High
+                            </label>
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="radio" name="priority" value="urgent"> Urgent
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="todoCategory">Category</label>
+                        <select class="form-control" id="todoCategory" required>
+                            <!-- Categories will be added here dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="todoDueDate">Due Date (Optional)</label>
+                        <input type="datetime-local" class="form-control" id="todoDueDate">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" id="cancelTodoBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveTodoBtn">Save</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Category Modal -->
+    <div class="modal" id="categoryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="categoryModalTitle">Add New Category</h2>
+                <span class="close-modal" id="closeCategoryModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="categoryForm">
+                    <input type="hidden" id="categoryId">
+                    <div class="form-group">
+                        <label for="categoryName">Category Name</label>
+                        <input type="text" class="form-control" id="categoryName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Color</label>
+                        <div class="color-picker" id="colorPicker">
+                            <div class="color-option selected" style="background-color: #ff6b6b;" data-color="#ff6b6b"></div>
+                            <div class="color-option" style="background-color: #48dbfb;" data-color="#48dbfb"></div>
+                            <div class="color-option" style="background-color: #1dd1a1;" data-color="#1dd1a1"></div>
+                            <div class="color-option" style="background-color: #5f27cd;" data-color="#5f27cd"></div>
+                            <div class="color-option" style="background-color: #feca57;" data-color="#feca57"></div>
+                            <div class="color-option" style="background-color: #ff9ff3;" data-color="#ff9ff3"></div>
+                            <div class="color-option" style="background-color: #54a0ff;" data-color="#54a0ff"></div>
+                            <div class="color-option" style="background-color: #222f3e;" data-color="#222f3e"></div>
+                        </div>
+                        <input type="hidden" id="categoryColor" value="#ff6b6b">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" id="cancelCategoryBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveCategoryBtn">Save</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
